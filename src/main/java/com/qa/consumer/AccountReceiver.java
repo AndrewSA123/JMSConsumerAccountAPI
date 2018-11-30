@@ -4,11 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.jms.Message;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import com.qa.domain.Account;
+import com.qa.ATS.Account;
 import com.qa.service.AccountService;
 
 @Component
@@ -22,14 +24,15 @@ public class AccountReceiver {
 	
 	private Date date = new Date();
 	
-	private Long id;
+	private Long id = 0l;
 
-	@JmsListener(destination = "accountQueue", containerFactory = "myFactory")
-	public Account receiveMessage(Account acc) {
+	@JmsListener(destination = "accountQueue", containerFactory = "jmsContainerFactory")
+	public Account receiveMessage(String acc) {
 		
-		acc.setId(id);
-		acc.setDate(dateFormat.format(date));
+//		acc.setDate(dateFormat.format(date));
 		id++;
+		System.out.println("this is coming off the queue");
+//		return new Account();
 		return service.mongoCreate(acc);
 	}
 	
