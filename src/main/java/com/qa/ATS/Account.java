@@ -10,7 +10,6 @@ public class Account implements Serializable{
 	private String accountNumber;
 	private String accountType;
 	private String prize;
-//	private String date;
 
 	public Account(String fName, String lName, String accountType, String prize) {
 
@@ -81,12 +80,6 @@ public class Account implements Serializable{
 	public void setPrize(String prize) {
 		this.prize = prize;
 	}
-//	public String getDate() {
-//		return date;
-//	}
-//	public void setDate(String date) {
-//		this.date = date;
-//	}
 
 
 	
